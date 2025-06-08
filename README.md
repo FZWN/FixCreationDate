@@ -1,109 +1,85 @@
-# FixCreationDate
+# MediaChronoFixer
 
-📂 VideoTimestampFixer
-ENGLISH | 🇬🇧
-🧭 What is this?
-A macOS utility written in Java that repairs incorrect file creation times (typically messed up when copying/importing files), and organizes media files by actual modified time (e.g., shooting date).
+## English
 
-Especially useful for Final Cut Pro users, where creation time affects file sorting and import logic.
+### What is this?
 
-✅ Features
-Aligns file creation time with last modified time
+A macOS utility written in Java that repairs incorrect file creation times (usually messed up during file transfers) and organizes media files based on their actual modification time (like shooting date).
 
-Organizes files into folders like: 2025-03-13
+Especially useful for Final Cut Pro users, where file creation time affects timeline and import sorting.
 
-Works with all file types, not just .mp4
+### Features
 
-Uses macOS Finder + AppleScript to preserve metadata
+- Syncs file creation time with last modified time
+- Sorts files into folders like `2025-03-13` based on their modification time
+- Supports all file types (not just `.mp4`)
+- Uses macOS Finder (via AppleScript) to preserve metadata correctly
+- Automatically deletes original files after processing (Warning below)
 
-Deletes original files after processing ⚠️ (see warning)
+### Warning
 
-⚠️ Warning
-⚠️ This tool will DELETE original files after successful copy.
-Make sure to back up your data or test on sample files first.
+This tool will **delete original files** after successful copy.  
+Please back up your data and test first if unsure.
 
-💡 Benefits
-Perfect for organizing raw media from cameras or SD cards
+### Benefits
 
-Helps Final Cut Pro read correct timeline order
+- Helps organize footage from SD cards, drones, or cameras
+- Final Cut Pro can sort footage by real shooting time
+- Finder and other editors show correct "Date Created"
+- Makes large media archives easier to navigate by date
 
-Makes large batches of imported videos/photos searchable by date
+### Requirements
 
-Avoids Finder showing misleading "Date Created" values
+- Java 11+
+- macOS (AppleScript + Finder required)
 
-🛠 How to Use
-Clone/download the project.
+### How to Use
 
-Open in IntelliJ or build to .jar.
+1. Clone or download this project.
+2. Open in IntelliJ IDEA or build a JAR.
+3. Modify the `sourceFolder` and `targetRoot` in the code.
+4. Run the app.
+5. All files will be moved and sorted by date into subfolders.
 
-Modify the sourceDir and targetRoot in VideoTimestampFixer.java.
+---
 
-Run the app.
+## 中文说明
 
-Done!
+### 这是什么？
 
-🧱 Requirements
-Java 11+
+这是一个 Java 写的 macOS 工具，用于修复文件错误的创建时间（例如从 SD 卡或移动硬盘复制文件时经常会变成复制时间），并根据文件的实际修改时间（通常是拍摄时间）对媒体文件分类整理。
 
-macOS only (uses AppleScript/Finder)
+特别适合 Final Cut Pro 用户，避免导入时顺序混乱。
 
-中文说明 | 🇨🇳
-🧭 这是什么？
-这是一个专为 macOS 用户开发的 Java 工具，用于修复文件创建时间错误（例如从 SD 卡或其他设备复制文件时常出现的“创建时间=复制时间”问题），并根据修改时间（通常是拍摄时间）对文件进行归类整理。
+### 功能特点
 
-特别适合使用 Final Cut Pro 的视频编辑者。
+- 将文件的创建时间同步为修改时间
+- 自动将文件整理进以日期命名的子文件夹，例如 `2025-03-13`
+- 支持所有类型的文件（不仅限于 .mp4）
+- 使用 macOS Finder + AppleScript 保留元数据（包括创建时间）
+- 成功复制后会删除原始文件（请看警告）
 
-✅ 功能特点
-将文件的 创建时间 设置为其 修改时间
+### 警告
 
-按照日期（如 2025-03-13）将文件自动分类到子文件夹中
+本工具会在处理成功后**删除原始文件**。  
+请务必做好备份或先在测试文件上试运行。
 
-支持所有类型的文件，不仅限于 .mp4
+### 使用优势
 
-使用 macOS 的 Finder + AppleScript 保留元数据
+- 整理相机、SD 卡、大量素材更加高效
+- Final Cut Pro 能识别拍摄时间并按顺序导入
+- Finder 中显示的创建时间更准确
+- 支持海量照片视频按时间归档与管理
 
-处理完成后会自动 删除原始文件 ⚠️（请提前备份）
+### 系统要求
 
-⚠️ 注意
-⚠️ 程序在复制成功后会删除原始文件。
-请先测试并确认逻辑无误，或做好备份后再批量处理重要素材。
+- Java 11 或以上
+- macOS 系统（依赖 AppleScript + Finder）
 
-💡 使用优势
-更好地管理从 SD 卡、相机导入的大量素材
+### 使用方法
 
-Final Cut Pro 能正确识别“拍摄时间”，自动排序
-
-Finder 中的“创建时间”不再混乱
-
-对照片、视频进行日期归类，方便归档和搜索
-
-🛠 如何使用
-克隆或下载本项目。
-
-用 IntelliJ 打开项目或打包成 .jar。
-
-打开 VideoTimestampFixer.java，修改路径变量：
-
-sourceDir：素材来源目录
-
-targetRoot：整理后存放的位置
-
-执行程序。
-
-成功！
-
-🧱 系统要求
-Java 11 或以上
-
-仅支持 macOS（依赖 AppleScript + Finder）
-
-📁 示例结构（运行后效果）
-swift
-复制
-编辑
-Final Cut Original Media/
-├── 2025-03-13/
-│   ├── DJI_0001.MP4
-│   └── IMG_4321.MOV
-├── 2025-03-14/
-│   └── GoPro_0423.MP4
+1. 克隆或下载本项目
+2. 用 IntelliJ IDEA 打开或构建 JAR 文件
+3. 修改源码中的 `sourceFolder` 与 `targetRoot` 路径
+4. 运行程序
+5. 文件将被移动并根据修改时间自动归类进日期子文件夹
